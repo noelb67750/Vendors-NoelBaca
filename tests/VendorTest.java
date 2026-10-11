@@ -5,8 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VendorTest {
 
     @Test
-    void addition() {
-        assertEquals(2, 1 + 1);
+    void addMoneyTest() {
+    Vending vendor = new Vending(10,10);
+
+    vendor.addMoney(1.25);
+    //.001 because double cant store decimals
+        // instead Im checking to see if there are in a .001 range of each other
+    assertEquals(1.25, vendor.getBalance(), 0.001);
     }
 
 }
