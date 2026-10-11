@@ -14,4 +14,14 @@ public class VendorTest {
     assertEquals(1.25, vendor.getBalance(), 0.001);
     }
 
+    @Test
+    void buyItemTest() {
+        Vending vendor = new Vending(10,10);
+        vendor.addMoney(2.00);
+
+        vendor.select("Candy");
+       assertEquals(9, vendor.getStock("Candy"));
+       assertEquals(0.75,vendor.getBalance(), 0.001);
+        }
+
 }

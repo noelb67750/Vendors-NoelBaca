@@ -24,7 +24,15 @@ class Vending {
     double getBalance () {
         return this.balance;
     }
-
+    // returns how many of an String "name" are left, or if 0 remain
+     int getStock(String name)
+     {
+         if (Stock.containsKey(name))
+         {
+             return Stock.get(name).stock;
+         }
+         return 0;
+     }
     /** adds money to the machine's balance
      * @param amt how much money to add
      * */
