@@ -2,6 +2,8 @@ class Item {
     double price;
     int stock;
     int timesPurchased = 0;
+    String Description = "";
+
     Item(double price, int numPieces) {
         this.price = price;
         this.stock = numPieces;
@@ -15,4 +17,5 @@ class Item {
         this.stock = this.stock - amount;
         this.timesPurchased = this.timesPurchased + amount;
     }
+
 }

@@ -126,6 +126,22 @@ class Vending {
         }
         return 0;
     }
+
+    void setDescription(String name, String description) {
+        if (Stock.containsKey(name)) {
+            Stock.get(name).Description = description;
+        }
+    }
+
+    String getDescription(String name)
+    {
+        if(Stock.containsKey(name))
+        {
+            return Stock.get(name).Description;
+        }
+        return "item does not exist";
+    }
+
     String getMostPopularItem()
     {
         String best = "";

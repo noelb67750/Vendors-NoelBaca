@@ -130,4 +130,14 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
     assertEquals(1,vendor.getPurchaseCount("Gum"));
     assertEquals("Candy", vendor.getMostPopularItem());
 }
+@Test
+    void itemDescriptiomTest()
+{
+    Vending vendor = new Vending(10,10);
+
+    vendor.setDescription("Candy", "Did you say Chocolate?");
+    assertEquals("Did you say Chocolate?", vendor.getDescription("Candy"));
+    assertEquals("item does not exist", vendor.getDescription("slushie"));
+
+}
 }
