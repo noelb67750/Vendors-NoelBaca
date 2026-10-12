@@ -111,9 +111,23 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
     vendor.select("Gum");
 
     assertEquals(0, vendor.getStock("Gum"));
-    assertEquals(0.50, vendor.getBalance(), 0.001); //check to see if it can be bought 
+    assertEquals(0.50, vendor.getBalance(), 0.001); //check to see if it can be bought
     assertEquals(10, vendor.getStock("Candy")); // check to make sure other items still there
 
 
+}
+
+@Test
+    void trackPurchaseTest()
+{
+    Vending vendor = new Vending (10,10);
+    vendor.addMoney(5.00);
+
+    vendor.select("Candy");
+    vendor.select("Candy");
+    vendor.select("Gum");
+    assertEquals(2,vendor.getPurchaseCount("Candy"));
+    assertEquals(1,vendor.getPurchaseCount("Gum"));
+    assertEquals("Candy", vendor.getMostPopularItem());
 }
 }

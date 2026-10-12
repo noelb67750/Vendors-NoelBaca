@@ -118,11 +118,40 @@ class Vending {
         }
     }
 
+    int getPurchaseCount(String name)
+    {
+        if (Stock.containsKey(name))
+        {
+            return Stock.get(name).timesPurchased;
+        }
+        return 0;
+    }
+    String getMostPopularItem()
+    {
+        String best = "";
+        int Count = 0;
+        for(String name : Stock.keySet())
+        {
+            int count = Stock.get(name).timesPurchased;
+            if(count > Count)
+            {
+                best = name;
+                Count = count;
+            }
+        }
+        return best;
+
+    }
+
     void removeItem(String name)
     {
         Stock.remove(name);
     }
 }
+
+
+
+
 class Examples {
 }
 
