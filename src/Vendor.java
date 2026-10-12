@@ -7,7 +7,8 @@ import java.util.HashMap;
  */
 class Vending {
     //each new vending gets its own hashmap
-    private HashMap<String, Item> Stock = new HashMap<String,Item>();
+    private HashMap<String, Item> Stock = new HashMap<String, Item>();
+
 
     // private static HashMap<String, Item> Stock = new HashMap<String,Item>();
     private double balance;
@@ -18,67 +19,83 @@ class Vending {
         this.balance = 0;
     }
 
-    /** resets the Balance to 0 */
-    void resetBalance () {
+    /**
+     * resets the Balance to 0
+     */
+    void resetBalance() {
         this.balance = 0;
     }
 
-    /** returns the current balance */
-    double getBalance () {
+    /**
+     * returns the current balance
+     */
+    double getBalance() {
         return this.balance;
     }
+
     // returns how many of an String "name" are left, or if 0 remain
-     int getStock(String name)
-     {
-         if (Stock.containsKey(name))
-         {
-             return Stock.get(name).stock;
-         }
-         return 0;
-     }
-    /** adds money to the machine's balance
+    int getStock(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).stock;
+        }
+        return 0;
+    }
+
+    /**
+     * adds money to the machine's balance
+     *
      * @param amt how much money to add
-     * */
-    void addMoney (double amt) {
+     *
+     */
+    void addMoney(double amt) {
         this.balance = this.balance + amt;
     }
 
-    /** attempt to purchase named item.  Message returned if
+    /**
+     * attempt to purchase named item.  Message returned if
      * the balance isn't sufficient to cover the item cost.
      *
      * @param name The name of the item to purchase ("Candy" or "Gum")
      */
-    void select (String name) {
+    void select(String name) {
         if (Stock.containsKey(name)) {
             Item item = Stock.get(name);
-            if(item.stock <= 0)
-            {
+            if (item.stock <= 0) {
                 System.out.println("item is sold out");
             }
-          //  if (balance >= item.price)
-            else if (balance >= item.price)
-            {
+            //  if (balance >= item.price)
+            else if (balance >= item.price) {
                 item.purchase(1);
                 this.balance = this.balance - item.price;
-            }
-            else
+            } else
                 System.out.println("Gimme more money");
+        } else System.out.println("Sorry, don't know that item");
+    }
+
+    String getInventory()
+    {
+        String result = "";
+        for (String name : Stock.keySet())
+        {
+            Item item = Stock.get(name);
+            //show the price two decimal places like .50
+            result = result + name + ": " + item.stock + " $" + String.format("%.2f", item.price) + "\n";
         }
-        else System.out.println("Sorry, don't know that item");
+        return result;
     }
 
     /**
      * restocks a item when given a name and amount
+     *
      * @param name
      * @param amount
      */
-    public void restock(String name, int amount)
-    {
-    if (Stock.containsKey(name))
-    {
-        Stock.get(name).restock(amount);
+    public void restock(String name, int amount) {
+        if (Stock.containsKey(name)) {
+            Stock.get(name).restock(amount);
+        }
     }
-    }
+
     public void restock(String name, int amount, double price) {
         if (Stock.containsKey(name)) {
             restock(name, amount);
@@ -87,20 +104,20 @@ class Vending {
         }
     }
 
-    public void emptyInventory()
-    {
+    public void emptyInventory() {
         Stock.clear();
     }
+
     void renameItem(String oldName, String newName) {
         if (Stock.containsKey(oldName)) {
             Item item = Stock.remove(oldName);
 
-        Stock.put(newName, item);
+            Stock.put(newName, item);
 
 
+        }
     }
 }
-
 class Examples {
-}}
+}
 

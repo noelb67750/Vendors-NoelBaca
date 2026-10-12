@@ -91,5 +91,15 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
 
 
     }
+    @Test
+    void FiveVendorsTest()
+    {
+        VendorSystem system = new VendorSystem();
+        for (int i = 0; i < 5; i++)
+        {
+            system.addVendor(new Vending(10,10));
+        }
+        assertEquals(5, system.getVendorCount());
+    }
 
 }
