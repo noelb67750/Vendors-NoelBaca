@@ -43,5 +43,18 @@ public class VendorTest {
 
         assertEquals(5,vendor.getStock("Candy"));
     }
+    @Test
+    void itemSoldOut()
+    {
+
+Vending vendor = new Vending(0,10);
+vendor.addMoney(1.25);
+
+vendor.select("Candy");
+
+assertEquals(0,vendor.getStock("Candy"));
+assertEquals(1.25, vendor.getBalance(), 0.001);
+
+    }
 
 }
