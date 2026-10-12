@@ -140,4 +140,35 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
     assertEquals("item does not exist", vendor.getDescription("slushie"));
 
 }
+@Test
+    void itemDiscountTest()
+{
+    Vending vendor = new Vending(10,10);
+
+    vendor.addDiscount("Candy", 20);
+
+    assertEquals(1.00, vendor.getPrice("Candy"), 0.001);
+    assertEquals(.50, vendor.getPrice("Gum"), .001);
+
+    vendor.addMoney(1.00);
+    vendor.select("Candy");
+    assertEquals(9,vendor.getStock("Candy"));
+}
+
+@Test
+    void categoryDiscountTest()
+{
+    Vending vendor = new Vending(10,10);
+    vendor.restock("Chips",5,1.50);
+    vendor.setCategory("Candy","sweets");
+    vendor.setCategory("Gum", "Sweets");
+
+    vendor.addCategoryDiscount("Sweets", 20);
+
+    assertEquals(1,vendor.getPrice("Candy"), .001);
+    assertEquals(.40, vendor.getPrice("Gum"), .001);
+    assertEquals(1.50, vendor.getPrice("Chips"), .001);
+
+
+}
 }

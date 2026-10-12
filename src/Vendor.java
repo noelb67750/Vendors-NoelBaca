@@ -72,11 +72,9 @@ class Vending {
         } else System.out.println("Sorry, don't know that item");
     }
 
-    String getInventory()
-    {
+    String getInventory() {
         String result = "";
-        for (String name : Stock.keySet())
-        {
+        for (String name : Stock.keySet()) {
             Item item = Stock.get(name);
             //show the price two decimal places like .50
             result = result + name + ": " + item.stock + " $" + String.format("%.2f", item.price) + "\n";
@@ -118,10 +116,8 @@ class Vending {
         }
     }
 
-    int getPurchaseCount(String name)
-    {
-        if (Stock.containsKey(name))
-        {
+    int getPurchaseCount(String name) {
+        if (Stock.containsKey(name)) {
             return Stock.get(name).timesPurchased;
         }
         return 0;
@@ -133,15 +129,45 @@ class Vending {
         }
     }
 
-    String getDescription(String name)
-    {
-        if(Stock.containsKey(name))
-        {
+    String getDescription(String name) {
+        if (Stock.containsKey(name)) {
             return Stock.get(name).Description;
         }
         return "item does not exist";
     }
 
+    double getPrice(String name) {
+        if (Stock.containsKey(name)){
+        return Stock.get(name).price;
+    }
+    return 0;
+}
+
+void addDiscount(String name, double percent)
+{
+    if(Stock.containsKey(name))
+    {
+        Item item = Stock.get(name);
+        item.price = item.price * (1-percent/100);
+    }
+}
+
+void setCategory(String name, String category)
+{
+    if(Stock.containsKey(name))
+    {
+        Stock.get(name).category = category;
+    }
+}
+
+void addCategoryDiscount(String category, double percent)
+{
+    for(String name : Stock.keySet()) {
+        if (Stock.get(name).category.equals(category)) {
+            addDiscount(name, percent);
+        }
+    }
+}
     String getMostPopularItem()
     {
         String best = "";
