@@ -77,4 +77,19 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
         assertEquals(0, vendor.getStock("Candy"));
     }
 
+    @Test
+    void vendorSeperateInventoryTest()
+    {
+        Vending vendor1 = new Vending(10, 10);
+        Vending vendor2 = new Vending(10, 10);
+
+        vendor1.addMoney(1.25);
+        vendor1.select("Candy");
+
+        assertEquals(9, vendor1.getStock("Candy"));
+        assertEquals(10, vendor2.getStock("Candy"));
+
+
+    }
+
 }
