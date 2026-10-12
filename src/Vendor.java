@@ -58,6 +58,19 @@ class Vending {
         else System.out.println("Sorry, don't know that item");
     }
 
+    /**
+     * restocks a item when given a name and amount
+     * @param name
+     * @param amount
+     */
+    public void restock(String name, int amount)
+    {
+    if (Stock.containsKey(name))
+    {
+        Stock.get(name).restock(amount);
+    }
+    }
+
     public void emptyInventory()
     {
         Stock.clear();
