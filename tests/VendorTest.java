@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import javax.xml.namespace.QName;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VendorTest {
@@ -55,6 +57,15 @@ vendor.select("Candy");
 assertEquals(0,vendor.getStock("Candy"));
 assertEquals(1.25, vendor.getBalance(), 0.001);
 
+    }
+    @Test
+    void restockAddsNewItemTest()
+    {
+        Vending vendor = new Vending(10,10);
+
+        vendor.restock("Chips", 5 ,1.50);
+
+        assertEquals(5, vendor.getStock("Chips"));
     }
 
 }

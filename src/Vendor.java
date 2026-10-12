@@ -76,11 +76,19 @@ class Vending {
         Stock.get(name).restock(amount);
     }
     }
+    public void restock(String name, int amount, double price) {
+        if (Stock.containsKey(name)) {
+            restock(name, amount);
+        } else {
+            Stock.put(name, new Item(price, amount));
+        }
+    }
 
     public void emptyInventory()
     {
         Stock.clear();
     }
+    //**
 }
 
 class Examples {
