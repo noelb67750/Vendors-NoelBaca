@@ -88,7 +88,13 @@ class Vending {
     {
         Stock.clear();
     }
-    //**
+    void renameItem(String oldName, String newName)
+    {
+        if (Stock.containsKey(oldName));
+        Item item = Stock.remove(oldName);
+        Stock.put(newName, item);
+
+    }
 }
 
 class Examples {

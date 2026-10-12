@@ -68,4 +68,13 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
         assertEquals(5, vendor.getStock("Chips"));
     }
 
+    @Test
+    void renameItemTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.renameItem("Candy", "Chocolate");
+
+        assertEquals(10, vendor.getStock("Chocolate"));
+        assertEquals(0, vendor.getStock("Candy"));
+    }
+
 }
