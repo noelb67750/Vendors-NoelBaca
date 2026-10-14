@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -189,6 +190,27 @@ void addCategoryDiscount(String category, double percent)
     {
         Stock.remove(name);
     }
+    //sets String to best seller
+    void markBestseller(String name) {
+
+        if (Stock.containsKey(name))
+        {
+            Stock.get(name).bestseller = true;
+        }
+    }
+    ArrayList<String> getBestSeller()
+    {
+      ArrayList<String> result = new ArrayList<String>();
+      for(String name : Stock.keySet())
+      {
+          if(Stock.get(name).bestseller)
+          {
+              result.add(name);
+          }
+      }
+      return result;
+    }
+
 }
 
 

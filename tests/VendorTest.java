@@ -8,62 +8,61 @@ public class VendorTest {
 
     @Test
     void addMoneyTest() {
-    Vending vendor = new Vending(10,10);
+        Vending vendor = new Vending(10, 10);
 
-    vendor.addMoney(1.25);
-    //.001 because double cant store decimals
+        vendor.addMoney(1.25);
+        //.001 because double cant store decimals
         // instead Im checking to see if there are in a .001 range of each other
-    assertEquals(1.25, vendor.getBalance(), 0.001);
+        assertEquals(1.25, vendor.getBalance(), 0.001);
     }
 
     @Test
     void buyItemTest() {
-        Vending vendor = new Vending(10,10);
+        Vending vendor = new Vending(10, 10);
         vendor.addMoney(2.00);
 
         vendor.select("Candy");
-       assertEquals(9, vendor.getStock("Candy"));
-       assertEquals(0.75,vendor.getBalance(), 0.001);
-        }
-    @Test
-    void emptyInventoryTest()
-    {
-        Vending vendor = new Vending(10,10);
-        vendor.emptyInventory();
-        assertEquals(0,vendor.getStock("Gum"));
+        assertEquals(9, vendor.getStock("Candy"));
+        assertEquals(0.75, vendor.getBalance(), 0.001);
+    }
 
-        assertEquals(0,vendor.getStock("Candy"));
+    @Test
+    void emptyInventoryTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.emptyInventory();
+        assertEquals(0, vendor.getStock("Gum"));
+
+        assertEquals(0, vendor.getStock("Candy"));
 
     }
 
     @Test
-    void restockAddsToStockTest()
-    {
-        Vending vendor =  new Vending(0, 10);
+    void restockAddsToStockTest() {
+        Vending vendor = new Vending(0, 10);
 
         vendor.restock("Candy", 5);
 
-        assertEquals(5,vendor.getStock("Candy"));
+        assertEquals(5, vendor.getStock("Candy"));
     }
+
     @Test
-    void itemSoldOut()
-    {
+    void itemSoldOut() {
 
-Vending vendor = new Vending(0,10);
-vendor.addMoney(1.25);
+        Vending vendor = new Vending(0, 10);
+        vendor.addMoney(1.25);
 
-vendor.select("Candy");
+        vendor.select("Candy");
 
-assertEquals(0,vendor.getStock("Candy"));
-assertEquals(1.25, vendor.getBalance(), 0.001);
+        assertEquals(0, vendor.getStock("Candy"));
+        assertEquals(1.25, vendor.getBalance(), 0.001);
 
     }
-    @Test
-    void restockAddsNewItemTest()
-    {
-        Vending vendor = new Vending(10,10);
 
-        vendor.restock("Chips", 5 ,1.50);
+    @Test
+    void restockAddsNewItemTest() {
+        Vending vendor = new Vending(10, 10);
+
+        vendor.restock("Chips", 5, 1.50);
 
         assertEquals(5, vendor.getStock("Chips"));
     }
@@ -78,8 +77,7 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
     }
 
     @Test
-    void vendorSeperateInventoryTest()
-    {
+    void vendorSeperateInventoryTest() {
         Vending vendor1 = new Vending(10, 10);
         Vending vendor2 = new Vending(10, 10);
 
@@ -91,84 +89,90 @@ assertEquals(1.25, vendor.getBalance(), 0.001);
 
 
     }
+
     @Test
-    void FiveVendorsTest()
-    {
+    void FiveVendorsTest() {
         VendorSystem system = new VendorSystem();
-        for (int i = 0; i < 5; i++)
-        {
-            system.addVendor(new Vending(10,10));
+        for (int i = 0; i < 5; i++) {
+            system.addVendor(new Vending(10, 10));
         }
         assertEquals(5, system.getVendorCount());
     }
-@Test
-    void removeItemTest()
-{
-    Vending vendor = new Vending(10,10);
-    vendor.addMoney(0.50);
 
-    vendor.removeItem("Gum");
-    vendor.select("Gum");
+    @Test
+    void removeItemTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.addMoney(0.50);
 
-    assertEquals(0, vendor.getStock("Gum"));
-    assertEquals(0.50, vendor.getBalance(), 0.001); //check to see if it can be bought
-    assertEquals(10, vendor.getStock("Candy")); // check to make sure other items still there
+        vendor.removeItem("Gum");
+        vendor.select("Gum");
 
-
-}
-
-@Test
-    void trackPurchaseTest()
-{
-    Vending vendor = new Vending (10,10);
-    vendor.addMoney(5.00);
-
-    vendor.select("Candy");
-    vendor.select("Candy");
-    vendor.select("Gum");
-    assertEquals(2,vendor.getPurchaseCount("Candy"));
-    assertEquals(1,vendor.getPurchaseCount("Gum"));
-    assertEquals("Candy", vendor.getMostPopularItem());
-}
-@Test
-    void itemDescriptiomTest()
-{
-    Vending vendor = new Vending(10,10);
-
-    vendor.setDescription("Candy", "Did you say Chocolate?");
-    assertEquals("Did you say Chocolate?", vendor.getDescription("Candy"));
-    assertEquals("item does not exist", vendor.getDescription("slushie"));
-
-}
-@Test
-    void itemDiscountTest()
-{
-    Vending vendor = new Vending(10,10);
-
-    vendor.addDiscount("Candy", 20);
-
-    assertEquals(1.00, vendor.getPrice("Candy"), 0.001);
-    assertEquals(.50, vendor.getPrice("Gum"), .001);
-
-    vendor.addMoney(1.00);
-    vendor.select("Candy");
-    assertEquals(9,vendor.getStock("Candy"));
-}
-
-@Test
-    void categoryDiscountTest()
-{
-    Vending vendor = new Vending(10,10);
-    vendor.restock("Chips",5,1.50);
-    vendor.setCategory("Candy","sweets");
-    vendor.setCategory("Gum", "Sweets");
-
-    vendor.addCategoryDiscount("Sweets", 20);
-
-    assertEquals(1,vendor.getPrice("Candy"), .001);
-    assertEquals(.40, vendor.getPrice("Gum"), .001);
-    assertEquals(1.50, vendor.getPrice("Chips"), .001);
+        assertEquals(0, vendor.getStock("Gum"));
+        assertEquals(0.50, vendor.getBalance(), 0.001); //check to see if it can be bought
+        assertEquals(10, vendor.getStock("Candy")); // check to make sure other items still there
 
 
-}
+    }
+
+    @Test
+    void trackPurchaseTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.addMoney(5.00);
+
+        vendor.select("Candy");
+        vendor.select("Candy");
+        vendor.select("Gum");
+        assertEquals(2, vendor.getPurchaseCount("Candy"));
+        assertEquals(1, vendor.getPurchaseCount("Gum"));
+        assertEquals("Candy", vendor.getMostPopularItem());
+    }
+
+    @Test
+    void itemDescriptiomTest() {
+        Vending vendor = new Vending(10, 10);
+
+        vendor.setDescription("Candy", "Did you say Chocolate?");
+        assertEquals("Did you say Chocolate?", vendor.getDescription("Candy"));
+        assertEquals("item does not exist", vendor.getDescription("slushie"));
+
+    }
+
+    @Test
+    void itemDiscountTest() {
+        Vending vendor = new Vending(10, 10);
+
+        vendor.addDiscount("Candy", 20);
+
+        assertEquals(1.00, vendor.getPrice("Candy"), 0.001);
+        assertEquals(.50, vendor.getPrice("Gum"), .001);
+
+        vendor.addMoney(1.00);
+        vendor.select("Candy");
+        assertEquals(9, vendor.getStock("Candy"));
+    }
+
+    @Test
+    void categoryDiscountTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.restock("Chips", 5, 1.50);
+        vendor.setCategory("Candy", "Sweets");
+        vendor.setCategory("Gum", "Sweets");
+
+        vendor.addCategoryDiscount("Sweets", 20);
+
+        assertEquals(1, vendor.getPrice("Candy"), .001);
+        assertEquals(.40, vendor.getPrice("Gum"), .001);
+        assertEquals(1.50, vendor.getPrice("Chips"), .001);
+
+
+    }
+
+    @Test
+    void bestsellerTest() {
+        Vending vendor = new Vending(10, 10);
+        vendor.markBestseller("Candy");
+        assertEquals(1, vendor.getBestSeller().get(0));
+        assertEquals("Candy", vendor.getBestSeller().get(0));
+
+    }
 }
