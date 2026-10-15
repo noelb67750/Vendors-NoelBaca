@@ -128,6 +128,13 @@ class Vending {
         Stock.clear();
     }
 
+    /**
+     *
+     * @param oldName
+     * @param newName
+     *
+     * replaces old name with newName
+     */
     void renameItem(String oldName, String newName) {
         if (Stock.containsKey(oldName)) {
             Item item = Stock.remove(oldName);
