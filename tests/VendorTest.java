@@ -171,7 +171,7 @@ public class VendorTest {
     void bestsellerTest() {
         Vending vendor = new Vending(10, 10);
         vendor.markBestseller("Candy");
-        assertEquals(1, vendor.getBestSeller().get(0));
+        assertEquals("Candy", vendor.getBestSeller().get(0));
         assertEquals("Candy", vendor.getBestSeller().get(0));
 
     }

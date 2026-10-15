@@ -34,7 +34,13 @@ class Vending {
         return this.balance;
     }
 
-    // returns how many of an String "name" are left, or if 0 remain
+    /**
+     *
+     *
+      * @param name
+     * returns Stock of a corresponding key
+     * and if none return 0
+     */
     int getStock(String name) {
         if (Stock.containsKey(name)) {
             return Stock.get(name).stock;
@@ -73,6 +79,11 @@ class Vending {
         } else System.out.println("Sorry, don't know that item");
     }
 
+    /**
+     *
+     * @return
+     * 
+     */
     String getInventory() {
         String result = "";
         for (String name : Stock.keySet()) {
