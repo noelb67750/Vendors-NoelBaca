@@ -106,6 +106,13 @@ class Vending {
         }
     }
 
+    /**
+     *
+     * @param name
+     * @param amount
+     * @param price
+     * restocks a item for a certian amount and for a certain price based off of the name
+     */
     public void restock(String name, int amount, double price) {
         if (Stock.containsKey(name)) {
             restock(name, amount);
@@ -114,6 +121,9 @@ class Vending {
         }
     }
 
+    /**
+     * removes all Stocks
+     */
     public void emptyInventory() {
         Stock.clear();
     }
