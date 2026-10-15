@@ -82,7 +82,7 @@ class Vending {
     /**
      *
      * @return
-     * 
+     * returns a String of all items names, and stocks.
      */
     String getInventory() {
         String result = "";
